@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -16,15 +17,18 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.pasteleriamilsabores.ui.components.BotonPrincipal
+import com.example.pasteleriamilsabores.ui.components.CampoTextoSoloLectura
 import com.example.pasteleriamilsabores.ui.components.DatoPerfil
 import com.example.pasteleriamilsabores.ui.components.EspacioAltura
 import com.example.pasteleriamilsabores.ui.components.TituloText
+import com.example.pasteleriamilsabores.ui.theme.MilSaboresFont
 import com.example.pasteleriamilsabores.viewmodel.ProfileViewModel
 import com.example.pasteleriamilsabores.viewmodel.SesionViewModel
 
@@ -61,26 +65,59 @@ fun PerfilScreen(
             Text(
                 text = "Mi Perfil",
                 fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                fontFamily = MilSaboresFont
             )
 
-            // 4) Mostrar datos del usuario cargado desde la BD
-            Text(
-                text = "Nombre: ${usuario?.nombre ?: "Cargando..."}",
-                fontSize = 18.sp
+            CampoTextoSoloLectura(
+                valor = usuario?.nombre ?: "Cargando...",
+                etiqueta = "Nombre"
             )
 
             usuario?.let {
                 if (it.correo != null) {
-                    Text(text = "Correo: ${it.correo}")
+                    CampoTextoSoloLectura(
+                        valor = it.correo,
+                        etiqueta = "Correo"
+                    )
                 }
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(2.dp))
 
-            Button(onClick = { navController.navigate("home") }) {
-                Text("Volver al inicio")
+            Button(onClick = { navController.navigate("editarperfil") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF8B4513)
+                )
+                ) {
+                Text("Editar Perfil")
             }
+
+
+            Button(onClick = { navController.navigate("login") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF8B4513)
+                )
+            ) {
+                Text("Cerrar Sesión")
+            }
+
+
+
+            Button(onClick = { navController.navigate("home") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF8B4513)
+                )
+            ) {
+                Text("Volver a la Pastelería")
+            }
+
+
+
+
+
+
+
         }
     }
 }

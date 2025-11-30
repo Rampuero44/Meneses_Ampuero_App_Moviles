@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.pasteleriamilsabores.ui.screen.CarritoScreen
+import com.example.pasteleriamilsabores.ui.screen.EditarPerfilScreen
 import com.example.pasteleriamilsabores.ui.screen.HomeScreen
 import com.example.pasteleriamilsabores.ui.screen.LoginScreen
 import com.example.pasteleriamilsabores.ui.screen.PerfilScreen
@@ -26,6 +27,7 @@ fun AppNavigation(){
         composable ("registro"){ RegistroScreen(navController = navController) }
         composable ("carrito"){ CarritoScreen(navController = navController, sesionViewModel = sesionViewModel) }
         composable ("perfil"){ PerfilScreen(navController = navController, sesionViewModel = sesionViewModel) }
+        composable ("editarperfil"){ EditarPerfilScreen(navController = navController, sesionViewModel = sesionViewModel) }
 
     }
 }

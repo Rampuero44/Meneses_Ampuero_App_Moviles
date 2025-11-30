@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.ShoppingCart
@@ -40,8 +41,9 @@ fun Navbar(
 
     Surface(
         modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
         shadowElevation = 4.dp,
-        color = Color.White
+        color = Color(0xFFDA6411)
     ) {
         Row(
             modifier = Modifier
@@ -54,7 +56,7 @@ fun Navbar(
             Text(
                 text = "Bienvenido, $userName",
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF8B4513),
+                color = Color(0xFFECEAE9),
                 fontSize = 18.sp
             )
             Row {
@@ -62,14 +64,14 @@ fun Navbar(
                     Icon(
                         Icons.Default.Person,
                         contentDescription = "Perfil",
-                        tint = Color(0xFF8B4513)
+                        tint = Color(0xFFECEAE9)
                     )
                 }
                 IconButton(onClick = { navController.navigate("carrito") }) {
                     Icon(
                         Icons.Default.ShoppingCart,
                         contentDescription = "Carrito",
-                        tint = Color(0xFF8B4513)
+                        tint = Color(0xFFECEAE9)
                     )
                 }
             }

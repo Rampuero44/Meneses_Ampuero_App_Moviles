@@ -22,6 +22,7 @@ import androidx.navigation.NavController
 import com.example.pasteleriamilsabores.ui.components.ProductoCard
 import com.example.pasteleriamilsabores.viewmodel.TiendaViewModel
 import com.example.pasteleriamilsabores.ui.components.Navbar
+import com.example.pasteleriamilsabores.ui.theme.MilSaboresFont
 import com.example.pasteleriamilsabores.viewmodel.SesionViewModel
 
 
@@ -45,7 +46,8 @@ fun HomeScreen(navController: NavController,
             text = "Mil Sabores para ti...",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xD0801111)
+            color = Color(0xD0801111),
+            fontFamily = MilSaboresFont
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -57,7 +59,8 @@ fun HomeScreen(navController: NavController,
         Text(
             text = "Nuestros Productos",
             fontSize = 18.sp,
-            color = Color(0xD0A99898)
+            color = Color(0xD0A99898),
+            fontFamily = MilSaboresFont
         )
 
         Spacer(modifier = Modifier.height(6.dp))

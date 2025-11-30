@@ -49,7 +49,6 @@ fun RegistroScreen(navController: NavController){
             modifier = Modifier
                 .padding(24.dp)
         ){
-            // Título
             TituloText("Crear Cuenta")
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -62,7 +61,6 @@ fun RegistroScreen(navController: NavController){
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // Campos del formulario
             CampoTexto(
                 valor = nombre,
                 onValorCambio = {nombre = it},
@@ -101,6 +99,7 @@ fun RegistroScreen(navController: NavController){
                     CoroutineScope(Dispatchers.IO).launch {
                         val nuevoUsuario = Usuario(nombre = nombre, correo = correo, contrasena= contrasena)
                         viewModel.registrousuario(nuevoUsuario)
+                        navController.navigate("home")
                     }
                 }
             )

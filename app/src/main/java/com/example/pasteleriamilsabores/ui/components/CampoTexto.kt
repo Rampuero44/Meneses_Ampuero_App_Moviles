@@ -19,3 +19,16 @@ fun CampoTexto(
         visualTransformation = visualTransformation
     )
 }
+
+@Composable
+fun CampoTextoSoloLectura(
+    valor: String,
+    etiqueta: String
+) {
+    OutlinedTextField(
+        value = valor,
+        onValueChange = {},
+        label = { Text(etiqueta) },
+        readOnly = true
+    )
+}
