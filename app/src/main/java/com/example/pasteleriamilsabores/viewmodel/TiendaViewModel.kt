@@ -1,10 +1,10 @@
 package com.example.pasteleriamilsabores.viewmodel
 
 import android.app.Application
-import androidx.compose.animation.core.copy
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pasteleriamilsabores.data.MilSaboresDatabase
+import com.example.pasteleriamilsabores.model.DetallePedido
 import com.example.pasteleriamilsabores.model.Producto
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -43,12 +43,12 @@ class TiendaViewModel (application: Application): AndroidViewModel(application) 
                     pedidoId = pedidoId,
                     productoId = producto.id,
                     cantidad = 1,
-                    precio = producto.precio
+                    precioUnitario = producto.precio
                 )
                 detallePedidoDao.insertarDetalle(nuevoDetalle)
             }
 
-            _carrito.value = detallePedidoDao.obtenerDetallesPorPedido(pedidoId)
+
         }
     }
 }

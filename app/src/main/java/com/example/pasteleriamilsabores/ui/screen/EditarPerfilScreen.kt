@@ -24,7 +24,7 @@ import com.example.pasteleriamilsabores.viewmodel.ProfileViewModel
 @Composable
 fun EditarPerfilScreen(
     viewModel: ProfileViewModel = viewModel(),
-    correoUsuario: String,
+    id: Int,
     onVolver: () -> Unit
 ) {
     val usuario by viewModel.usuario.collectAsState()
@@ -33,7 +33,7 @@ fun EditarPerfilScreen(
     val mensaje by viewModel.mensaje.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.cargarUsuario(correoUsuario)
+        viewModel.cargarUsuario(id)
     }
 
     usuario?.let { user ->

@@ -21,9 +21,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.pasteleriamilsabores.ui.components.ProductoCard
 import com.example.pasteleriamilsabores.viewmodel.TiendaViewModel
+import com.example.pasteleriamilsabores.ui.components.Navbar
+import com.example.pasteleriamilsabores.viewmodel.SesionViewModel
+
 
 @Composable
-fun HomeScreen(navController: NavController){
+fun HomeScreen(navController: NavController,
+               sesionViewModel: SesionViewModel
+){
     val viewModel : TiendaViewModel = viewModel()
     val productos by viewModel.productos.collectAsState()
 
@@ -37,12 +42,16 @@ fun HomeScreen(navController: NavController){
             .fillMaxSize()
     ){
         Text(
-            text = "Bienvenido/a a nuestra Pasteleria",
+            text = "Mil Sabores para ti...",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xD0801111)
         )
 
+        Spacer(modifier = Modifier.height(8.dp))
+        
+        Navbar(navController,  sesionViewModel = sesionViewModel)
+        
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
@@ -51,11 +60,13 @@ fun HomeScreen(navController: NavController){
             color = Color(0xD0A99898)
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(6.dp))
 
         LazyColumn {
             items(productos) { producto ->
-                ProductoCard(producto)
+                ProductoCard(producto,
+                agregarAlCarrito = { productoSeleccionado ->
+                    viewModel.agregarAlCarrito(productoSeleccionado) })
             }
         }
     }

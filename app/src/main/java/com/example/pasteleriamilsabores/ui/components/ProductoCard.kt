@@ -85,7 +85,9 @@ fun ProductoCard(producto: Producto, agregarAlCarrito: (Producto) -> Unit) {
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                Button(onClick = { agregarAlCarrito(producto) }) {
+                Button(
+                    onClick = { agregarAlCarrito(producto) })
+                {
                     Text("Agregar")
                 }
             }

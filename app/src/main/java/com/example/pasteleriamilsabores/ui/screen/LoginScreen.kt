@@ -1,4 +1,4 @@
-package com.example.pasteleriamilsabores.ui.screen
+    package com.example.pasteleriamilsabores.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -26,16 +26,22 @@ import com.example.pasteleriamilsabores.ui.components.BotonLogin
 import com.example.pasteleriamilsabores.ui.components.CampoTexto
 import com.example.pasteleriamilsabores.ui.components.TituloText
 import com.example.pasteleriamilsabores.viewmodel.LoginViewModel
+import com.example.pasteleriamilsabores.viewmodel.SesionViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import com.example.pasteleriamilsabores.data.UsuarioDao
+import com.example.pasteleriamilsabores.viewmodel.UsuarioSesion
 
-@Composable
-fun LoginScreen(navController: NavController){
+    @Composable
+fun LoginScreen(navController: NavController,
+                sesionViewModel: SesionViewModel
+){
     var usuario by remember { mutableStateOf("") }
     var contrasena by remember { mutableStateOf("") }
     var mensaje by remember { mutableStateOf("") }
+
 
     val viewModel: LoginViewModel = viewModel()
 
@@ -89,13 +95,23 @@ fun LoginScreen(navController: NavController){
                 "Ingresar",
                 onClickAccion = {
                     CoroutineScope(Dispatchers.IO).launch {
-                        val loginExitoso = viewModel.login(usuario, contrasena)
+                        val usuarioEncontrado = viewModel.login(usuario, contrasena)
 
-                        withContext(Dispatchers.Main){
-                            if(loginExitoso){
+                        withContext(Dispatchers.Main) {
+                            if (usuarioEncontrado != null) {
                                 mensaje = "Login exitoso"
+
+                                sesionViewModel.setUsuario(
+                                    UsuarioSesion(
+                                        id = usuarioEncontrado.id,
+                                        nombre = usuarioEncontrado.nombre,
+                                        correo = usuarioEncontrado.correo,
+                                        contrasena = usuarioEncontrado.contrasena
+                                    )
+                                )
+
                                 navController.navigate("home")
-                            } else{
+                            } else {
                                 mensaje = "Usuario o contraseña incorrectos"
                             }
                         }
