@@ -1,4 +1,4 @@
-package com.example.pasteleriamilsabores.ui.components
+    package com.example.pasteleriamilsabores.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
